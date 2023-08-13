@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Hamburger Creator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Custom Hamburger Creator</h1>
+
+    <!-- Form container -->
+    <div id="form-container">
+        <!-- Bun options -->
+        <div class="input-container">
+            <label for="bun">Select bun type:</label>d
+            <select id="bun">
+                <option value="Regular Bun">Regular Bun</option>
+                <option value="Sesame Seed Bun">Sesame Seed Bun</option>
+                <option value="Whole Wheat Bun">Whole Wheat Bun</option>
+                <!-- Add more bun options here -->
+            </select>
+        </div>
+
+        <!-- Veggie options -->
+        <div class="input-container">
+            <label for="veggies">Select veggies:</label>
+            <select id="veggies" multiple>
+                <option value="Lettuce">Lettuce</option>
+                <option value="Tomato">Tomato</option>
+                <option value="Onion">Onion</option>
+                <!-- Add more veggie options here -->
+            </select>
+        </div>
+
+        <!-- Cheese options -->
+        <div class="input-container">
+            <label for="cheese">Select cheese:</label>
+            <select id="cheese">
+                <option value="">No Cheese</option>
+                <option value="Cheddar">Cheddar</option>
+                <option value="Swiss">Swiss</option>
+                <option value="Blue Cheese">Blue Cheese</option>
+                <!-- Add more cheese options here -->
+            </select>
+        </div>
+
+        <!-- Sauce options -->
+        <div class="input-container">
+            <label for="sauce">Select sauce:</label>
+            <select id="sauce">
+                <option value="">No Sauce</option>
+                <option value="Ketchup">Ketchup</option>
+                <option value="Mustard">Mustard</option>
+                <option value="Mayo">Mayo</option>
+                <!-- Add more sauce options here -->
+            </select>
+        </div>
+
+        <!-- Patty type -->
+        <div class="input-container">
+            <label for="patty">Select patty type:</label>
+            <select id="patty">
+                <option value="Beef">Beef</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <!-- Add more patty options here -->
+            </select>
+        </div>
+
+        <!-- Patty count -->
+        <div class="input-container">
+            <label for="patty-count">Select patty count:</label>
+            <input type="number" id="patty-count" min="1" value="1">
+        </div>
+
+        <!-- Additional toppings -->
+        <div class="input-container">
+            <label for="toppings">Select additional toppings:</label>
+            <select id="toppings" multiple>
+                <option value="Pickles">Pickles</option>
+                <option value="Hot Peppers">Hot Peppers</option>
+                <option value="Olives">Olives</option>
+                <!-- Add more topping options here -->
+            </select>
+        </div>
+
+        <!-- Button to create the hamburger -->
+        <button onclick="createHamburger()">Create Hamburger</button>
+
+        <!-- Display the description -->
+        <p id="hamburger-description"></p>
+    </div>
+
+    <script>
+        function createHamburger() {
+                // Get selected options
+                const bun = document.getElementById("bun").value;
+                const veggiesSelect = document.getElementById("veggies");
+                const veggies = Array.from(veggiesSelect.selectedOptions).map(option => option.value);
+                const cheese = document.getElementById("cheese").value;
+                const sauce = document.getElementById("sauce").value;
+                const patty = document.getElementById("patty").value;
+                const pattyCount = parseInt(document.getElementById("patty-count").value);
+                const toppingsSelect = document.getElementById("toppings");
+                const toppings = Array.from(toppingsSelect.selectedOptions).map(option => option.value);
+
+                // Create the hamburger description
+                let description = "Delicious hamburger with a " + bun + " filled with ";
+                if (pattyCount > 1) {
+                    description += pattyCount + " " + patty + " patties, ";
+                } else {
+                    description += "a " + patty + " patty, ";
+                }
+
+                if (cheese) {
+                    description += "topped with " + cheese + " cheese, ";
+                }
+
+                if (veggies.length > 0) {
+                    description += "loaded with " + veggies.join(", ") + ", ";
+                }
+
+                if (sauce) {
+                    description += "drizzled with " + sauce + " sauce, ";
+                }
+
+                if (toppings.length > 0) {
+                    description += "and garnished with " + toppings.join(", ");
+                }
+
+                // Finish the sentence
+                description += ".";
+
+                // Display the description
+                document.getElementById("hamburger-description").textContent = description;
+            }
+    </script>
+</body>
+</html>
